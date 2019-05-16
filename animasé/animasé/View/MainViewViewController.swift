@@ -42,7 +42,7 @@ class MainViewViewController: UIViewController {
         boyFace = Face()
         
         arrowView = UIView(frame: CGRect(x: 100, y: 100, width: 300, height: 300))
-        arrow = Arrow(isReversed: false)
+        arrow = Arrow(isReversed: true)
         
         
         

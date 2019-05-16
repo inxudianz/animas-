@@ -44,9 +44,9 @@ class Arrow {
         stickPath.addLine(to: CGPoint(x: 0, y: 50))
         stickPath.addLine(to: CGPoint(x: 40, y: 50))
         
-        arrowHeadPath.move(to: CGPoint(x: 60, y: 60))
-        arrowHeadPath.addLine(to: CGPoint(x: 30, y: 30))
-        arrowHeadPath.addLine(to: CGPoint(x: 30, y: 90))
-        arrowHeadPath.addLine(to: CGPoint(x: 60, y: 60))
+        arrowHeadPath.move(to: CGPoint(x: -30, y: 60))
+        arrowHeadPath.addLine(to: CGPoint(x: 0, y: 30))
+        arrowHeadPath.addLine(to: CGPoint(x: 0, y: 90))
+        arrowHeadPath.addLine(to: CGPoint(x: -30, y: 60))
     }
 }
