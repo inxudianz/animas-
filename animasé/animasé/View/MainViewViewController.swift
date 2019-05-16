@@ -11,6 +11,7 @@ import UIKit
 class MainViewViewController: UIViewController {
     
     // Init objects
+    var lockView :UIView!
     var landView :UIView!
     var controlLeft :UIButton!
     var controlRight :UIButton!
@@ -27,6 +28,7 @@ class MainViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initLockView()
         // Init landView
         landView = UIView(frame: CGRect(x: 0, y: self.view.frame.maxY - (self.view.frame.maxY / 3), width: self.view.frame.maxX, height: self.view.frame.maxY / 3))
         landView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
@@ -40,7 +42,7 @@ class MainViewViewController: UIViewController {
         boyFace = Face()
         
         arrowView = UIView(frame: CGRect(x: 100, y: 100, width: 300, height: 300))
-        arrow = Arrow()
+        arrow = Arrow(isReversed: false)
         
         
         
@@ -56,6 +58,8 @@ class MainViewViewController: UIViewController {
         arrowView.layer.addSublayer(arrow.arrowHead)
         arrowView.layer.addSublayer(arrow.stick)
         
+        self.view.addSubview(lockView)
+        
      //   landView.addSubview(<#T##view: UIView##UIView#>)
      //   landView.addSubview(<#T##view: UIView##UIView#>)
 
@@ -63,19 +67,52 @@ class MainViewViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    /*
-    // MARK: - Navigation
+    func initLockView() {
+        lockView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
+        
+        lockView.backgroundColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1)
+        
+        let circlePath1 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+        let circlePath2 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/2, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+        let circlePath3 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/3, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+        let circlePath4 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/4, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+        
+        let circle1 = CAShapeLayer()
+        let circle2 = CAShapeLayer()
+        let circle3 = CAShapeLayer()
+        let circle4 = CAShapeLayer()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        circle1.path = circlePath1.cgPath
+        circle1.fillColor = UIColor(red: 100/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        circle2.path = circlePath2.cgPath
+        circle2.fillColor = UIColor(red: 125/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        circle3.path = circlePath3.cgPath
+        circle3.fillColor = UIColor(red: 150/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        circle4.path = circlePath4.cgPath
+        circle4.fillColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        
+        
+        let startButton = UIButton(type: .system)
+        
+        startButton.layer.cornerRadius = 500
+        startButton.layer.backgroundColor = UIColor(red: 220/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        startButton.setTitle("Open", for: .normal)
+        startButton.addTarget(self, action: #selector(startApp), for: .touchDown)
+        startButton.frame = CGRect(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2, width: 50, height: 100)
+        
+        lockView.layer.addSublayer(circle1)
+        lockView.layer.addSublayer(circle2)
+        lockView.layer.addSublayer(circle3)
+        lockView.layer.addSublayer(circle4)
+        lockView.addSubview(startButton)
     }
-    */
     
-    @objc func ger() {
-        animHead()
+    @objc func startApp() {
+        UIView.animate(withDuration: 1) {
+            self.lockView.isHidden = true
+        }
     }
+    
     func animHead() {
         UIView.animate(withDuration: 3) {
             self.boyFace.head.position = CGPoint(x: 20, y: 20)
