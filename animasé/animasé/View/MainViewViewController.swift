@@ -12,13 +12,17 @@ class MainViewViewController: UIViewController {
     
     // Init objects
     var landView :UIView!
+    var controlLeft :UIButton!
+    var controlRight :UIButton!
+    var controlAction :UIButton!
+    
     var skyView :UIView!
     
     var faceView :UIView!
     var boyFace :Face!
     
-    var but :UIButton!
-    
+    var arrowView :UIView!
+    var arrow :Arrow!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,22 +38,26 @@ class MainViewViewController: UIViewController {
         // Init faceView
         faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2), width: self.view.frame.maxX / 3, height: self.view.frame.maxY / 5))
         boyFace = Face()
-
         
-        but = UIButton(type: .system)
-        but.frame = CGRect(x: 10, y: 10, width: 100, height: 100)
-        but.setTitle("ASD", for: .normal)
+        arrowView = UIView(frame: CGRect(x: 100, y: 100, width: 300, height: 300))
+        arrow = Arrow()
         
-        but.addTarget(self, action: #selector(ger), for: .touchDown)
+        
+        
         // add views to main viewcontroller
         self.view.addSubview(skyView)
         self.view.addSubview(landView)
         self.view.addSubview(faceView)
+        self.view.addSubview(arrowView)
         faceView.layer.addSublayer(boyFace.head)
         faceView.layer.addSublayer(boyFace.lEye)
         faceView.layer.addSublayer(boyFace.rEye)
         faceView.layer.addSublayer(boyFace.mouth)
-        self.view.addSubview(but)
+        arrowView.layer.addSublayer(arrow.arrowHead)
+        arrowView.layer.addSublayer(arrow.stick)
+        
+     //   landView.addSubview(<#T##view: UIView##UIView#>)
+     //   landView.addSubview(<#T##view: UIView##UIView#>)
 
         
         // Do any additional setup after loading the view.

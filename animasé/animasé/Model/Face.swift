@@ -6,7 +6,6 @@
 //  Copyright © 2019 William Inx. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class Face{
