@@ -34,6 +34,7 @@ class MainViewViewController: UIViewController {
     var rightArrow :Arrow!
     var actionButton :UIButton!
     
+    var chestView :UIView!
     var chest :Chest!
     
     override func viewDidLoad() {
@@ -49,9 +50,18 @@ class MainViewViewController: UIViewController {
         skyView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         // Init faceView
-        faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2) + 60, width: self.view.frame.maxX / 3, height: self.view.frame.maxY / 5))
+        faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2) + 60, width: 100, height: 100))
         boyFace = Face()
+        boyFace.head.position.x += 50
+        boyFace.head.position.y += 20
+        boyFace.lEye.position.x += 50
+        boyFace.lEye.position.y += 20
+        boyFace.rEye.position.x += 50
+        boyFace.rEye.position.y += 20
+        boyFace.mouth.position.x += 50
+        boyFace.mouth.position.y += 20
         
+        faceView.backgroundColor = .black
         // Buttons view
         arrowView = UIView(frame: CGRect(x: landView.frame.minX + 5, y: landView.frame.minY + 5, width: landView.frame.maxX - 10, height: landView.frame.maxY - 10))
         leftArrow = Arrow(isReversed: true)
@@ -88,23 +98,26 @@ class MainViewViewController: UIViewController {
         arrowView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
         chest = Chest()
-        chest.chest.position.x += 100
-        chest.chest.position.y += 100
-        chest.chestLid.position.x += 100
-        chest.chestLid.position.y += 100
-        chest.chestLock.position.x += 100
-        chest.chestLock.position.y += 100
+        chest.chest.position.x += 10
+        chest.chest.position.y += 65
+        chest.chestLid.position.x += 10
+        chest.chestLid.position.y += 65
+        chest.chestLock.position.x += 10
+        chest.chestLock.position.y += 65
         
-        skyView.layer.addSublayer(chest.chestLid)
+        chestView = UIView(frame: CGRect(x: skyView.frame.maxX - 100, y: skyView.frame.maxY - 400, width: 100, height: 100))
+        chestView.backgroundColor = .blue
+        chestView.layer.addSublayer(chest.chestLid)
 
-        skyView.layer.addSublayer(chest.chest)
-        skyView.layer.addSublayer(chest.chestLock)
+        chestView.layer.addSublayer(chest.chest)
+        chestView.layer.addSublayer(chest.chestLock)
         
         // add views to main viewcontroller
         self.view.addSubview(skyView)
         self.view.addSubview(landView)
         self.view.addSubview(faceView)
         self.view.addSubview(arrowView)
+        self.view.addSubview(chestView)
         faceView.layer.addSublayer(boyFace.head)
         faceView.layer.addSublayer(boyFace.lEye)
         faceView.layer.addSublayer(boyFace.rEye)
@@ -128,7 +141,14 @@ class MainViewViewController: UIViewController {
         }
         else if sender.accessibilityIdentifier == "action" {
             // detect collision!
-            print("Action")
+            if faceView.frame.intersects(chestView.frame) {
+                chestView.layer.opacity = 0
+                chestView.layer.position = CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2)
+                
+                UIView.animate(withDuration: 1) {
+                    self.chestView.layer.opacity = 1
+                }
+            }
         }
     }
 
@@ -218,12 +238,6 @@ class MainViewViewController: UIViewController {
         
     }
     
-    func animHead() {
-        UIView.animate(withDuration: 3) {
-            self.boyFace.head.position = CGPoint(x: 20, y: 20)
-        }
-        
-        }
     
 }
 
