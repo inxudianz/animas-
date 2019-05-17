@@ -10,8 +10,13 @@ import UIKit
 
 class MainViewViewController: UIViewController {
     
-    // Init objects
+    // Init objects for firstView
     var lockView :UIView!
+    var leftLockView :UIView!
+    var rightLockView :UIView!
+    var startButton :UIButton!
+    
+    // Init objects for secondary view
     var landView :UIView!
     var controlLeft :UIButton!
     var controlRight :UIButton!
@@ -60,10 +65,6 @@ class MainViewViewController: UIViewController {
         
         self.view.addSubview(lockView)
         
-     //   landView.addSubview(<#T##view: UIView##UIView#>)
-     //   landView.addSubview(<#T##view: UIView##UIView#>)
-
-        
         // Do any additional setup after loading the view.
     }
 
@@ -72,27 +73,33 @@ class MainViewViewController: UIViewController {
         
         lockView.backgroundColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1)
         
-        let circlePath1 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
-        let circlePath2 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/2, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
-        let circlePath3 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/3, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
-        let circlePath4 = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/4, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+        leftLockView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX/2, height: self.view.frame.maxY))
+        rightLockView = UIView(frame: CGRect(x: self.view.frame.maxX/2, y: 0, width: self.view.frame.maxX/2, height: self.view.frame.maxY))
         
-        let circle1 = CAShapeLayer()
-        let circle2 = CAShapeLayer()
-        let circle3 = CAShapeLayer()
-        let circle4 = CAShapeLayer()
+        let circleLockPath = UIBezierPath(arcCenter: CGPoint(x: self.view.frame.maxX/2 + 20, y: self.view.frame.maxY/2), radius: self.view.frame.maxX/8, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+        
+        let leftTrianglePath = UIBezierPath()
+        leftTrianglePath.move(to: .zero)
+        leftTrianglePath.addLine(to: CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2))
+        leftTrianglePath.addLine(to: CGPoint(x: 0, y: self.view.frame.maxY))
+        leftTrianglePath.addLine(to: .zero)
+        
+        let rightTrianglePath = UIBezierPath()
+        rightTrianglePath.move(to: CGPoint(x: self.view.frame.maxX/2, y: 0))
+        rightTrianglePath.addLine(to: CGPoint(x: 0, y: self.view.frame.maxY/2))
+        rightTrianglePath.addLine(to: CGPoint(x: self.view.frame.maxX, y: self.view.frame.maxY))
+        rightTrianglePath.addLine(to: CGPoint(x: self.view.frame.maxX/2, y: 0))
+        
+        let circleLock = CAShapeLayer()
+        let leftTriangle = CAShapeLayer()
+        let rightTriangle = CAShapeLayer()
+        rightTriangle.position.x -= 5
 
-        circle1.path = circlePath1.cgPath
-        circle1.fillColor = UIColor(red: 100/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
-        circle2.path = circlePath2.cgPath
-        circle2.fillColor = UIColor(red: 125/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
-        circle3.path = circlePath3.cgPath
-        circle3.fillColor = UIColor(red: 150/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
-        circle4.path = circlePath4.cgPath
-        circle4.fillColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        circleLock.path = circleLockPath.cgPath
+        leftTriangle.path = leftTrianglePath.cgPath
+        rightTriangle.path = rightTrianglePath.cgPath
         
-        
-        let startButton = UIButton(type: .system)
+        startButton = UIButton(type: .system)
         
         startButton.layer.cornerRadius = 500
         startButton.layer.backgroundColor = UIColor(red: 220/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
@@ -100,17 +107,51 @@ class MainViewViewController: UIViewController {
         startButton.addTarget(self, action: #selector(startApp), for: .touchDown)
         startButton.frame = CGRect(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2, width: 50, height: 100)
         
-        lockView.layer.addSublayer(circle1)
-        lockView.layer.addSublayer(circle2)
-        lockView.layer.addSublayer(circle3)
-        lockView.layer.addSublayer(circle4)
+        
+        lockView.addSubview(leftLockView)
+        leftLockView.layer.addSublayer(leftTriangle)
+        leftLockView.layer.addSublayer(circleLock)
+        
+        lockView.addSubview(rightLockView)
+        rightLockView.layer.addSublayer(rightTriangle)
+        
         lockView.addSubview(startButton)
     }
     
     @objc func startApp() {
-        UIView.animate(withDuration: 1) {
-            self.lockView.isHidden = true
+        startButton.isHidden = true
+        if let layers = leftLockView.layer.sublayers {
+            for layer in layers.reversed() {
+                UIView.animate(withDuration: 50) {
+                    layer.transform = CATransform3DScale(layer.transform, CGFloat(0.1), CGFloat(5), CGFloat(1))
+                }
+                break
+            }
         }
+        
+        if let layers = leftLockView.layer.sublayers {
+            for layer in layers {
+                UIView.animate(withDuration: 50) {
+                    layer.position.x -= 500
+                }
+                break
+            }
+        }
+        
+        if let layers = rightLockView.layer.sublayers {
+            for layer in layers {
+                UIView.animate(withDuration: 50) {
+                    layer.position.x += 500
+                }
+                break
+            }
+        }
+        
+        UIView.animate(withDuration: 1) {
+            self.lockView.layer.opacity = 0
+            self.startButton.layer.position.y += 1000
+        }
+        
     }
     
     func animHead() {

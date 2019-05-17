@@ -14,6 +14,7 @@
 		9207BA8B228A4BF500E9051A /* MainViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207BA8A228A4BF500E9051A /* MainViewViewController.swift */; };
 		92487047228A6EE30042DAFE /* Face.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487046228A6EE30042DAFE /* Face.swift */; };
 		92487087228CE5230042DAFE /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487086228CE5230042DAFE /* Arrow.swift */; };
+		92487089228DBB040042DAFE /* Chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487088228DBB040042DAFE /* Chest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9207BA8A228A4BF500E9051A /* MainViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewViewController.swift; path = "animasé/View/MainViewViewController.swift"; sourceTree = SOURCE_ROOT; };
 		92487046228A6EE30042DAFE /* Face.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Face.swift; sourceTree = "<group>"; };
 		92487086228CE5230042DAFE /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		92487088228DBB040042DAFE /* Chest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				92487046228A6EE30042DAFE /* Face.swift */,
 				92487086228CE5230042DAFE /* Arrow.swift */,
+				92487088228DBB040042DAFE /* Chest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				9207BA79228A45ED00E9051A /* animase_.xcdatamodeld in Sources */,
 				9207BA8B228A4BF500E9051A /* MainViewViewController.swift in Sources */,
 				92487047228A6EE30042DAFE /* Face.swift in Sources */,
+				92487089228DBB040042DAFE /* Chest.swift in Sources */,
 				92487087228CE5230042DAFE /* Arrow.swift in Sources */,
 				9207BA71228A45ED00E9051A /* AppDelegate.swift in Sources */,
 			);
