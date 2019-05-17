@@ -28,7 +28,13 @@ class MainViewViewController: UIViewController {
     var boyFace :Face!
     
     var arrowView :UIView!
-    var arrow :Arrow!
+    var leftArrow :Arrow!
+    var leftButton :UIButton!
+    var rightButton :UIButton!
+    var rightArrow :Arrow!
+    var actionButton :UIButton!
+    
+    var chest :Chest!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +49,56 @@ class MainViewViewController: UIViewController {
         skyView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         // Init faceView
-        faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2), width: self.view.frame.maxX / 3, height: self.view.frame.maxY / 5))
+        faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2) + 60, width: self.view.frame.maxX / 3, height: self.view.frame.maxY / 5))
         boyFace = Face()
         
-        arrowView = UIView(frame: CGRect(x: 100, y: 100, width: 300, height: 300))
-        arrow = Arrow(isReversed: true)
+        // Buttons view
+        arrowView = UIView(frame: CGRect(x: landView.frame.minX + 5, y: landView.frame.minY + 5, width: landView.frame.maxX - 10, height: landView.frame.maxY - 10))
+        leftArrow = Arrow(isReversed: true)
+        rightArrow = Arrow(isReversed: false)
+        
+        leftButton = UIButton(type: .system)
+        leftButton.frame = CGRect(x:  20, y: 80, width: 100, height: 100)
+        leftArrow.arrowHead.position.x += 40
+        leftArrow.stick.position.x += 40
+        leftButton.layer.addSublayer(leftArrow.arrowHead)
+        leftButton.layer.addSublayer(leftArrow.stick)
+        leftButton.accessibilityIdentifier = "left"
+        leftButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
+        
+        rightButton = UIButton(type: .system)
+        rightButton.frame = CGRect(x: 120, y: 80, width: 100, height: 100)
+        rightArrow.arrowHead.position.x += 20
+        rightArrow.stick.position.x += 20
+        rightButton.layer.addSublayer(rightArrow.arrowHead)
+        rightButton.layer.addSublayer(rightArrow.stick)
+        rightButton.accessibilityIdentifier = "right"
+        rightButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
         
         
+        actionButton = UIButton(type: .system)
+        actionButton.backgroundColor = .black
+        actionButton.frame = CGRect(x: 270, y: 80, width: 70, height: 70)
+        actionButton.layer.cornerRadius = 38
+        actionButton.setTitle("A", for: .normal)
+        actionButton.titleLabel?.font = UIFont(name: "Arial", size: CGFloat(40))
+        actionButton.accessibilityIdentifier = "action"
+        actionButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
+        
+        arrowView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        
+        chest = Chest()
+        chest.chest.position.x += 100
+        chest.chest.position.y += 100
+        chest.chestLid.position.x += 100
+        chest.chestLid.position.y += 100
+        chest.chestLock.position.x += 100
+        chest.chestLock.position.y += 100
+        
+        skyView.layer.addSublayer(chest.chestLid)
+
+        skyView.layer.addSublayer(chest.chest)
+        skyView.layer.addSublayer(chest.chestLock)
         
         // add views to main viewcontroller
         self.view.addSubview(skyView)
@@ -60,12 +109,27 @@ class MainViewViewController: UIViewController {
         faceView.layer.addSublayer(boyFace.lEye)
         faceView.layer.addSublayer(boyFace.rEye)
         faceView.layer.addSublayer(boyFace.mouth)
-        arrowView.layer.addSublayer(arrow.arrowHead)
-        arrowView.layer.addSublayer(arrow.stick)
+        
+        arrowView.addSubview(leftButton)
+        arrowView.addSubview(rightButton)
+        arrowView.addSubview(actionButton)
         
         self.view.addSubview(lockView)
         
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func pressControl(sender: UIButton!) {
+        if sender.accessibilityIdentifier == "left" {
+            faceView.layer.position.x -= 10
+        }
+        else if sender.accessibilityIdentifier == "right" {
+            faceView.layer.position.x += 10
+        }
+        else if sender.accessibilityIdentifier == "action" {
+            // detect collision!
+            print("Action")
+        }
     }
 
     func initLockView() {

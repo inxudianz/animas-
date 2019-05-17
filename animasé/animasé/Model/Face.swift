@@ -11,14 +11,14 @@ import UIKit
 class Face{
     
     // Init Head
-    var headPath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 25), radius: CGFloat(80), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
+    var headPath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 25), radius: CGFloat(40), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
     var head = CAShapeLayer()
-    var eyePath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 0), radius: CGFloat(12), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
+    var eyePath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 0), radius: CGFloat(6), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
     var lEye = CAShapeLayer()
     
     var rEye = CAShapeLayer()
     
-    var mouthPath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 25), radius: CGFloat(35), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi), clockwise: true)
+    var mouthPath = UIBezierPath(arcCenter: CGPoint(x: 0, y: 25), radius: CGFloat(14), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi), clockwise: true)
     var mouth = CAShapeLayer()
     
     init() {
@@ -32,7 +32,7 @@ class Face{
         
         rEye.fillColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         rEye.path = eyePath.cgPath
-        rEye.position.x = 35
+        rEye.position.x = 25
         
         mouth.path = mouthPath.cgPath
         mouth.fillColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
