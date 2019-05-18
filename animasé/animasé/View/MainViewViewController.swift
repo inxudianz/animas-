@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainViewViewController: UIViewController {
     
@@ -42,6 +43,8 @@ class MainViewViewController: UIViewController {
     var chestView :UIView!
     var chest :Chest!
     var isChestCenter :Bool = false
+    
+    var player :AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +105,7 @@ class MainViewViewController: UIViewController {
 
     func animateChest() {
         self.chestView.transform = CGAffineTransform(rotationAngle: -0.2)
+        addSoundFX()
         UIView.animate(withDuration: 0.1, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
         })
@@ -116,6 +120,32 @@ class MainViewViewController: UIViewController {
             }
         }
     }
+    
+    func addSoundFX() {
+        print("start")
+        guard let url = Bundle.main.url(forResource: "drumSample", withExtension: "mp3") else { return }
+        
+        do {
+            print("ds")
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            print("ss")
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            print("fs")
+            /* iOS 10 and earlier require the following line:
+             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
+            
+            guard let player = player else { return }
+            print("xs")
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
     func initLockView() {
         lockView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
         
