@@ -82,14 +82,12 @@ class MainViewViewController: UIViewController {
         else if sender.accessibilityIdentifier == "action" {
             
             if chestView.center == CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2) {
-                print("center")
                 actionButton.isEnabled = false
                 animateChest()
             }
             
             // detect collision!
             if faceView.frame.intersects(chestView.frame) && isChestCenter == false {
-                print("collide")
                 chestView.layer.opacity = 0
                 chestView.layer.position = CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2)
                 resultView.isHidden = false
@@ -117,28 +115,22 @@ class MainViewViewController: UIViewController {
                 self.actionButton.isEnabled = true
                 self.chestView.layer.removeAllAnimations()
                 self.chestView.transform = CGAffineTransform(rotationAngle: 0)
+                self.player?.stop()
             }
         }
     }
     
     func addSoundFX() {
-        print("start")
         guard let url = Bundle.main.url(forResource: "drumSample", withExtension: "mp3") else { return }
         
         do {
-            print("ds")
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            print("ss")
             try AVAudioSession.sharedInstance().setActive(true)
             
-            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            print("fs")
-            /* iOS 10 and earlier require the following line:
-             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
             
             guard let player = player else { return }
-            print("xs")
+            player.numberOfLoops = -1
             player.play()
             
         } catch let error {

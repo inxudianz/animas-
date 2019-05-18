@@ -15,6 +15,7 @@
 		92487047228A6EE30042DAFE /* Face.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487046228A6EE30042DAFE /* Face.swift */; };
 		92487087228CE5230042DAFE /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487086228CE5230042DAFE /* Arrow.swift */; };
 		92487089228DBB040042DAFE /* Chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487088228DBB040042DAFE /* Chest.swift */; };
+		924870AD2290823A0042DAFE /* drumSample.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 924870AC2290823A0042DAFE /* drumSample.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		92487046228A6EE30042DAFE /* Face.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Face.swift; sourceTree = "<group>"; };
 		92487086228CE5230042DAFE /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		92487088228DBB040042DAFE /* Chest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chest.swift; sourceTree = "<group>"; };
+		924870AC2290823A0042DAFE /* drumSample.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drumSample.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				9207BA85228A45FE00E9051A /* Model */,
 				9207BA70228A45ED00E9051A /* AppDelegate.swift */,
 				9207BA7A228A45EF00E9051A /* Assets.xcassets */,
+				924870AB229082190042DAFE /* Audio */,
 				9207BA7C228A45EF00E9051A /* LaunchScreen.storyboard */,
 				9207BA7F228A45EF00E9051A /* Info.plist */,
 				9207BA77228A45ED00E9051A /* animase_.xcdatamodeld */,
@@ -84,9 +87,25 @@
 		9207BA86228A461400E9051A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				924870AA229082100042DAFE /* New Group */,
 				9207BA8A228A4BF500E9051A /* MainViewViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		924870AA229082100042DAFE /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		924870AB229082190042DAFE /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				924870AC2290823A0042DAFE /* drumSample.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924870AD2290823A0042DAFE /* drumSample.mp3 in Resources */,
 				9207BA7E228A45EF00E9051A /* LaunchScreen.storyboard in Resources */,
 				9207BA7B228A45EF00E9051A /* Assets.xcassets in Resources */,
 			);
