@@ -22,6 +22,9 @@ class MainViewViewController: UIViewController {
     var controlRight :UIButton!
     var controlAction :UIButton!
     
+    var resultView :UIView!
+    
+    
     var skyView :UIView!
     
     var faceView :UIView!
@@ -36,6 +39,7 @@ class MainViewViewController: UIViewController {
     
     var chestView :UIView!
     var chest :Chest!
+    var isChestCenter :Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +89,6 @@ class MainViewViewController: UIViewController {
         rightButton.accessibilityIdentifier = "right"
         rightButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
         
-        
         actionButton = UIButton(type: .system)
         actionButton.backgroundColor = .black
         actionButton.frame = CGRect(x: 270, y: 80, width: 70, height: 70)
@@ -112,10 +115,16 @@ class MainViewViewController: UIViewController {
         chestView.layer.addSublayer(chest.chest)
         chestView.layer.addSublayer(chest.chestLock)
         
+        resultView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
+        resultView.backgroundColor = .white
+        resultView.layer.opacity = 0.8
+        resultView.isHidden = true
+        
         // add views to main viewcontroller
         self.view.addSubview(skyView)
         self.view.addSubview(landView)
         self.view.addSubview(faceView)
+        self.view.addSubview(resultView)
         self.view.addSubview(arrowView)
         self.view.addSubview(chestView)
         faceView.layer.addSublayer(boyFace.head)
@@ -126,6 +135,7 @@ class MainViewViewController: UIViewController {
         arrowView.addSubview(leftButton)
         arrowView.addSubview(rightButton)
         arrowView.addSubview(actionButton)
+        
         
         self.view.addSubview(lockView)
         
@@ -140,14 +150,34 @@ class MainViewViewController: UIViewController {
             faceView.layer.position.x += 10
         }
         else if sender.accessibilityIdentifier == "action" {
+            
+            if chestView.center == CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2) {
+                print("center")
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseIn, animations: {
+                    self.chestView.transform = CGAffineTransform(rotationAngle: 1)
+                },completion: { (_) in
+                    UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseIn, animations: {
+                        self.chestView.transform = CGAffineTransform(rotationAngle: -1)
+                    }, completion: { (_) in
+                        UIView.animate(withDuration: 0.15,delay: 0,options: .curveEaseOut, animations: {
+                            self.chestView.transform = CGAffineTransform(rotationAngle: 0)
+                })
+                })
+                })
+            }
+            
             // detect collision!
-            if faceView.frame.intersects(chestView.frame) {
+            if faceView.frame.intersects(chestView.frame) && isChestCenter == false {
+                print("collide")
                 chestView.layer.opacity = 0
                 chestView.layer.position = CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2)
+                resultView.isHidden = false
                 
                 UIView.animate(withDuration: 1) {
+                    self.resultView.layer.opacity = 0.3
                     self.chestView.layer.opacity = 1
                 }
+                isChestCenter = true
             }
         }
     }
@@ -185,7 +215,7 @@ class MainViewViewController: UIViewController {
         
         startButton = UIButton(type: .system)
         
-        startButton.layer.cornerRadius = 500
+        startButton.layer.cornerRadius = 1
         startButton.layer.backgroundColor = UIColor(red: 220/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
         startButton.setTitle("Open", for: .normal)
         startButton.addTarget(self, action: #selector(startApp), for: .touchDown)
