@@ -17,7 +17,7 @@ class MainViewViewController: UIViewController {
     var rightLockView :UIView!
     var startButton :UIButton!
     
-    // Init objects for secondary view
+    // Init scenery view
     var skyView :UIView!
     var cloudView :UIView!
     var cloud :Cloud!
@@ -26,8 +26,9 @@ class MainViewViewController: UIViewController {
     var treeView :UIView!
     var tree :Tree!
     var tree2 :Tree!
-    
     var landView :UIView!
+    
+    // Init control view
     var controlLeft :UIButton!
     var controlRight :UIButton!
     var controlAction :UIButton!
@@ -127,7 +128,7 @@ class MainViewViewController: UIViewController {
                 self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
             })
             DispatchQueue.global().async {
-                for _ in 1...2 {
+                for _ in 1...10 {
                     sleep(1)
                 }
                 DispatchQueue.main.async {
@@ -147,7 +148,7 @@ class MainViewViewController: UIViewController {
                 self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
             })
             DispatchQueue.global().async {
-                for _ in 1...2 {
+                for _ in 1...10 {
                     sleep(1)
                 }
                 DispatchQueue.main.async {
@@ -196,7 +197,7 @@ class MainViewViewController: UIViewController {
     func initLockView() {
         lockView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
         
-        lockView.backgroundColor = UIColor(red: 200/255, green: 0/255, blue: 0/255, alpha: 1)
+        lockView.backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 64/255, alpha: 1)
         
         leftLockView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX/2, height: self.view.frame.maxY))
         rightLockView = UIView(frame: CGRect(x: self.view.frame.maxX/2, y: 0, width: self.view.frame.maxX/2, height: self.view.frame.maxY))
@@ -224,7 +225,8 @@ class MainViewViewController: UIViewController {
         rightTriangle.path = rightTrianglePath.cgPath
         
         startButton = UIButton(type: .system)
-        startButton.setTitle("Open", for: .normal)
+        startButton.setTitle("Start", for: .normal)
+        startButton.titleLabel?.font = UIFont(name: "Arial", size: 20)
         startButton.addTarget(self, action: #selector(startApp), for: .touchDown)
         startButton.frame = CGRect(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2, width: 100, height: 100)
         
