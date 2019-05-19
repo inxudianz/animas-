@@ -44,7 +44,10 @@ class MainViewViewController: UIViewController {
     var chest :Chest!
     var isChestCenter :Bool = false
     
-    var player :AVAudioPlayer?
+    // Init audio player
+    var audioPlayer :AVAudioPlayer?
+    var audioURL :URL?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +91,8 @@ class MainViewViewController: UIViewController {
             
             // detect collision!
             if faceView.frame.intersects(chestView.frame) && isChestCenter == false {
+                audioPlayer?.stop()
+                addSoundFX(audio: "blastFX",isRepeat: false)
                 chestView.layer.opacity = 0
                 chestView.layer.position = CGPoint(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2)
                 resultView.isHidden = false
@@ -103,7 +108,7 @@ class MainViewViewController: UIViewController {
 
     func animateChest() {
         self.chestView.transform = CGAffineTransform(rotationAngle: -0.2)
-        addSoundFX()
+        addSoundFX(audio: "drumSample",isRepeat: true)
         UIView.animate(withDuration: 0.1, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
         })
@@ -115,22 +120,25 @@ class MainViewViewController: UIViewController {
                 self.actionButton.isEnabled = true
                 self.chestView.layer.removeAllAnimations()
                 self.chestView.transform = CGAffineTransform(rotationAngle: 0)
-                self.player?.stop()
+                self.audioPlayer?.stop()
             }
         }
     }
     
-    func addSoundFX() {
-        guard let url = Bundle.main.url(forResource: "drumSample", withExtension: "mp3") else { return }
+    func addSoundFX(audio: String, isRepeat: Bool) {
         
         do {
+            audioURL = Bundle.main.url(forResource: audio, withExtension: "wav")
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            audioPlayer = try AVAudioPlayer(contentsOf: audioURL!, fileTypeHint: AVFileType.mp3.rawValue)
             
-            guard let player = player else { return }
-            player.numberOfLoops = -1
+            guard let player = audioPlayer else { return }
+            if isRepeat == true {
+                player.numberOfLoops = -1
+            }
+            
             player.play()
             
         } catch let error {
@@ -188,6 +196,7 @@ class MainViewViewController: UIViewController {
     }
     
     func initMainView() {
+        
         // Init landView
         landView = UIView(frame: CGRect(x: 0, y: self.view.frame.maxY - (self.view.frame.maxY / 3), width: self.view.frame.maxX, height: self.view.frame.maxY / 3))
         landView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
@@ -283,6 +292,7 @@ class MainViewViewController: UIViewController {
                 }
                 break
             }
+            addSoundFX(audio: "mainTheme",isRepeat: true)
         }
         
         if let layers = leftLockView.layer.sublayers {
