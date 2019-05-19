@@ -19,6 +19,11 @@ class MainViewViewController: UIViewController {
     
     // Init objects for secondary view
     var skyView :UIView!
+    var cloudView :UIView!
+    var cloud :Cloud!
+    var cloud2 :Cloud!
+    var cloud3 :Cloud!
+    
     var landView :UIView!
     var controlLeft :UIButton!
     var controlRight :UIButton!
@@ -48,10 +53,14 @@ class MainViewViewController: UIViewController {
     var audioPlayer :AVAudioPlayer?
     var audioURL :URL?
     
+    // Init successRate
+    var successRate = 100
+    var yayLabel :UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        yayLabel = UILabel()
         initLockView()
         
         initMainView()
@@ -107,20 +116,55 @@ class MainViewViewController: UIViewController {
     }
 
     func animateChest() {
-        self.chestView.transform = CGAffineTransform(rotationAngle: -0.2)
-        addSoundFX(audio: "drumSample",isRepeat: true)
-        UIView.animate(withDuration: 0.1, delay: 0, options: [.repeat, .autoreverse], animations: {
-            self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
-        })
-        DispatchQueue.global().async {
-            for _ in 1...10 {
-                sleep(1)
+        if successRate <= Int.random(in: 1...100) {
+            print("fail")
+            self.chestView.transform = CGAffineTransform(rotationAngle: -0.2)
+            addSoundFX(audio: "drumSample",isRepeat: true)
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.repeat, .autoreverse], animations: {
+                self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
+            })
+            DispatchQueue.global().async {
+                for _ in 1...2 {
+                    sleep(1)
+                }
+                DispatchQueue.main.async {
+                    self.actionButton.isEnabled = true
+                    self.chestView.layer.removeAllAnimations()
+                    self.chestView.transform = CGAffineTransform(rotationAngle: 0)
+                    self.audioPlayer?.stop()
+                }
+                self.boyFace.beSad()
             }
-            DispatchQueue.main.async {
-                self.actionButton.isEnabled = true
-                self.chestView.layer.removeAllAnimations()
-                self.chestView.transform = CGAffineTransform(rotationAngle: 0)
-                self.audioPlayer?.stop()
+        }
+        else if successRate >= Int.random(in: 1...100) {
+            print("success")
+            self.chestView.transform = CGAffineTransform(rotationAngle: -0.2)
+            addSoundFX(audio: "drumSample",isRepeat: true)
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.repeat, .autoreverse], animations: {
+                self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
+            })
+            DispatchQueue.global().async {
+                for _ in 1...2 {
+                    sleep(1)
+                }
+                DispatchQueue.main.async {
+                    self.actionButton.isEnabled = true
+                    self.chestView.layer.removeAllAnimations()
+                    self.chestView.transform = CGAffineTransform(rotationAngle: 0)
+                    if let chestLayers = self.chestView.layer.sublayers {
+                        for layer in chestLayers {
+                            if layer.name == "chestLid" {
+                                layer.removeFromSuperlayer()
+                            }
+                        }
+                    }
+                    self.audioPlayer?.stop()
+                    self.yayLabel.text = "YAY"
+                    self.yayLabel.font = self.yayLabel.font.withSize(60)
+                    self.yayLabel.frame = CGRect(x: self.view.frame.maxX/2 - 50, y: self.view.frame.maxY/2 - 100, width: 200, height: 100)
+                    self.addSoundFX(audio: "firework", isRepeat: false)
+                    self.boyFace.beHappy()
+                }
             }
         }
     }
@@ -204,6 +248,22 @@ class MainViewViewController: UIViewController {
         // Init skyView
         skyView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
         skyView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        cloudView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY/4))
+        cloud = Cloud()
+        cloud.cloud.position.y += 100
+        cloud.cloud.position.x += 90
+        
+        cloud2 = Cloud()
+        cloud2.cloud.position.y += 190
+        cloud2.cloud.position.x += 220
+        cloud3 = Cloud()
+        cloud3.cloud.position.y += 90
+        cloud3.cloud.position.x += 330
+        
+        cloudView.layer.addSublayer(cloud.cloud)
+        cloudView.layer.addSublayer(cloud2.cloud)
+        cloudView.layer.addSublayer(cloud3.cloud)
+
         
         // Init faceView
         faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2) + 60, width: 100, height: 100))
@@ -266,6 +326,7 @@ class MainViewViewController: UIViewController {
     func addViews() {
         // add views to main viewcontroller
         self.view.addSubview(skyView)
+        self.view.addSubview(cloudView)
         self.view.addSubview(landView)
         self.view.addSubview(faceView)
         self.view.addSubview(resultView)
@@ -281,6 +342,8 @@ class MainViewViewController: UIViewController {
         arrowView.addSubview(leftButton)
         arrowView.addSubview(rightButton)
         arrowView.addSubview(actionButton)
+        
+        resultView.addSubview(yayLabel)
     }
    
     @objc func startApp() {

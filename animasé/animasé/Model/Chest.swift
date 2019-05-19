@@ -25,12 +25,14 @@ class Chest {
 
         
         chestLid.path = chestLidPath.cgPath
+        chestLid.name = "chestLid"
         chestLock.path = chestLockPath.cgPath
+        chestLock.name = "chestLock"
         chest.path = chestPath.cgPath
+        chest.name = "chest"
         chestLid.fillColor = UIColor.orange.cgColor
         chestLock.fillColor = UIColor.yellow.cgColor
         chest.fillColor = UIColor.brown.cgColor
-        
         
         
         

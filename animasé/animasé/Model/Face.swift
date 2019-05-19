@@ -18,8 +18,8 @@ class Face{
     
     var rEye = CAShapeLayer()
     
-    var mouthPathHappy = UIBezierPath(arcCenter: CGPoint(x: 0, y: 25), radius: CGFloat(14), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi), clockwise: true)
-    var mouthPathSad = UIBezierPath(arcCenter: CGPoint(x: 0, y: 25), radius: CGFloat(14), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi), clockwise: false)
+    var mouthPathHappy = UIBezierPath(arcCenter: CGPoint(x: 30, y: 0), radius: CGFloat(20), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi), clockwise: true)
+    var mouthPathSad = UIBezierPath(arcCenter: CGPoint(x: 30, y: 0), radius: CGFloat(20), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi), clockwise: false)
     var mouthPathNeutral = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 40, height: 15), cornerRadius: 5)
     var mouth = CAShapeLayer()
     
@@ -49,5 +49,13 @@ class Face{
         lEye.position.x = 20
         rEye.position.x = 50
         mouth.position.x = 20
+    }
+    
+    func beSad() {
+        mouth.path = mouthPathSad.cgPath
+    }
+    
+    func beHappy() {
+        mouth.path = mouthPathHappy.cgPath
     }
 }
