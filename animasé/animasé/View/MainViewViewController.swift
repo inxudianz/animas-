@@ -23,6 +23,9 @@ class MainViewViewController: UIViewController {
     var cloud :Cloud!
     var cloud2 :Cloud!
     var cloud3 :Cloud!
+    var treeView :UIView!
+    var tree :Tree!
+    var tree2 :Tree!
     
     var landView :UIView!
     var controlLeft :UIButton!
@@ -263,6 +266,27 @@ class MainViewViewController: UIViewController {
         cloudView.layer.addSublayer(cloud.cloud)
         cloudView.layer.addSublayer(cloud2.cloud)
         cloudView.layer.addSublayer(cloud3.cloud)
+        
+        treeView = UIView(frame: CGRect(x: 0, y: self.cloudView.frame.maxY, width: self.view.frame.maxX
+            , height: self.skyView.frame.maxY - self.cloudView.frame.maxY))
+        
+        tree = Tree()
+        tree.stick.position.x += 70
+        tree.tree.position.x += 72
+        tree.stick.position.y += 280
+        tree.tree.position.y += 280
+        
+        tree2 = Tree()
+        tree2.stick.position.x += 250
+        tree2.tree.position.x += 252
+        tree2.stick.position.y += 280
+        tree2.tree.position.y += 280
+        
+        treeView.layer.addSublayer(tree.stick)
+        treeView.layer.addSublayer(tree.tree)
+        treeView.layer.addSublayer(tree2.stick)
+        treeView.layer.addSublayer(tree2.tree)
+
 
         
         // Init faceView
@@ -327,6 +351,7 @@ class MainViewViewController: UIViewController {
         // add views to main viewcontroller
         self.view.addSubview(skyView)
         self.view.addSubview(cloudView)
+        self.view.addSubview(treeView)
         self.view.addSubview(landView)
         self.view.addSubview(faceView)
         self.view.addSubview(resultView)

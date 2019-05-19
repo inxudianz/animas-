@@ -20,6 +20,7 @@
 		924870B32291A8600042DAFE /* drumSample.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870B22291A8600042DAFE /* drumSample.wav */; };
 		924870B52291AD510042DAFE /* firework.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870B42291AD510042DAFE /* firework.wav */; };
 		924870B72291B0150042DAFE /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870B62291B0150042DAFE /* Cloud.swift */; };
+		924870B92291B81E0042DAFE /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870B82291B81E0042DAFE /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		924870B22291A8600042DAFE /* drumSample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumSample.wav; sourceTree = "<group>"; };
 		924870B42291AD510042DAFE /* firework.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = firework.wav; sourceTree = "<group>"; };
 		924870B62291B0150042DAFE /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
+		924870B82291B81E0042DAFE /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				92487086228CE5230042DAFE /* Arrow.swift */,
 				92487088228DBB040042DAFE /* Chest.swift */,
 				924870B62291B0150042DAFE /* Cloud.swift */,
+				924870B82291B81E0042DAFE /* Tree.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				92487047228A6EE30042DAFE /* Face.swift in Sources */,
 				92487089228DBB040042DAFE /* Chest.swift in Sources */,
 				924870B72291B0150042DAFE /* Cloud.swift in Sources */,
+				924870B92291B81E0042DAFE /* Tree.swift in Sources */,
 				92487087228CE5230042DAFE /* Arrow.swift in Sources */,
 				9207BA71228A45ED00E9051A /* AppDelegate.swift in Sources */,
 			);
