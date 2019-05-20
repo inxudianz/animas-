@@ -19,38 +19,42 @@ class MainViewViewController: UIViewController {
     
     // Init scenery view
     var skyView :UIView!
-    var cloudView :UIView!
-    var cloud :Cloud!
-    var cloud2 :Cloud!
-    var cloud3 :Cloud!
+    var skyImage :UIImage!
+    var skyImageView :UIImageView!
+    var treeImage :UIImage!
+    var treeImageView :UIImageView!
+    var treeImageView2 :UIImageView!
     var treeView :UIView!
-    var tree :Tree!
-    var tree2 :Tree!
+    var treeView2 :UIView!
+    var cloudImage :UIImage!
+    var cloudImageView :UIImageView!
+    var cloudImageView2 :UIImageView!
+    var cloudView: UIView!
+    var cloudView2 :UIView!
     var landView :UIView!
-    
-    // Init control view
-    var controlLeft :UIButton!
-    var controlRight :UIButton!
-    var controlAction :UIButton!
+    var landImage :UIImage!
+    var landImageView :UIImageView!
     
     // Init blur view for last view
     var resultView :UIView!
     
     // Init face view
     var faceView :UIView!
-    var boyFace :Face!
+    var cookieFace :UIImage!
+    var cookieFaceView :UIImageView!
     
     // Init controls view
-    var arrowView :UIView!
+    var controlView :UIView!
     var leftArrow :Arrow!
     var leftButton :UIButton!
-    var rightButton :UIButton!
     var rightArrow :Arrow!
+    var rightButton :UIButton!
     var actionButton :UIButton!
     
     // Init chest view
     var chestView :UIView!
-    var chest :Chest!
+    var chestImage :UIImage!
+    var chestImageView :UIImageView!
     var isChestCenter :Bool = false
     
     // Init audio player
@@ -83,16 +87,18 @@ class MainViewViewController: UIViewController {
             if faceView.frame.minX > self.view.frame.minX {
                 UIView.animate(withDuration: 0.21) {
                     self.faceView.layer.position.x -= 10
+                    self.cookieFaceView.image = UIImage(named: "cookman_l_close")
                 }
-                boyFace.lookLeft()
+                self.cookieFaceView.image = UIImage(named: "cookman_l_open")
             }
         }
         else if sender.accessibilityIdentifier == "right" {
             if faceView.frame.maxX < self.view.frame.maxX {
                 UIView.animate(withDuration: 0.21) {
                     self.faceView.layer.position.x += 10
+                    self.cookieFaceView.image = UIImage(named: "cookman_r_close")
                 }
-                boyFace.lookRight()
+                self.cookieFaceView.image = UIImage(named: "cookman_r_open")
             }
         }
         else if sender.accessibilityIdentifier == "action" {
@@ -137,7 +143,6 @@ class MainViewViewController: UIViewController {
                     self.chestView.transform = CGAffineTransform(rotationAngle: 0)
                     self.audioPlayer?.stop()
                 }
-                self.boyFace.beSad()
             }
         }
         else if successRate >= Int.random(in: 1...100) {
@@ -146,6 +151,10 @@ class MainViewViewController: UIViewController {
             addSoundFX(audio: "drumSample",isRepeat: true)
             UIView.animate(withDuration: 0.1, delay: 0, options: [.repeat, .autoreverse], animations: {
                 self.chestView.transform = CGAffineTransform(rotationAngle: 0.2)
+            })
+            UIView.animate(withDuration: 10, animations: {
+                self.resultView.layer.backgroundColor = UIColor.black.cgColor
+                self.resultView.layer.opacity = 0.9
             })
             DispatchQueue.global().async {
                 for _ in 1...10 {
@@ -163,11 +172,11 @@ class MainViewViewController: UIViewController {
                         }
                     }
                     self.audioPlayer?.stop()
+                    self.chestImageView.image = UIImage(named: "chest_open")
                     self.yayLabel.text = "YAY"
                     self.yayLabel.font = self.yayLabel.font.withSize(60)
                     self.yayLabel.frame = CGRect(x: self.view.frame.maxX/2 - 50, y: self.view.frame.maxY/2 - 100, width: 200, height: 100)
-                    self.addSoundFX(audio: "firework", isRepeat: false)
-                    self.boyFace.beHappy()
+                    self.addSoundFX(audio: "yay", isRepeat: false)
                 }
             }
         }
@@ -248,80 +257,84 @@ class MainViewViewController: UIViewController {
         
         // Init landView
         landView = UIView(frame: CGRect(x: 0, y: self.view.frame.maxY - (self.view.frame.maxY / 3), width: self.view.frame.maxX, height: self.view.frame.maxY / 3))
-        landView.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        
+        landImage = UIImage(named: "grass")
+        landImageView = UIImageView(image: landImage)
+        landImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY / 3)
+        
+        landView.addSubview(landImageView)
         
         // Init skyView
         skyView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
-        skyView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        cloudView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY/4))
-        cloud = Cloud()
-        cloud.cloud.position.y += 100
-        cloud.cloud.position.x += 90
         
-        cloud2 = Cloud()
-        cloud2.cloud.position.y += 190
-        cloud2.cloud.position.x += 220
-        cloud3 = Cloud()
-        cloud3.cloud.position.y += 90
-        cloud3.cloud.position.x += 330
+        skyImage = UIImage(named: "sky.png")
+        skyImageView = UIImageView(image: skyImage)
+        skyImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.maxX
+            , height: self.view.frame.maxY)
         
-        cloudView.layer.addSublayer(cloud.cloud)
-        cloudView.layer.addSublayer(cloud2.cloud)
-        cloudView.layer.addSublayer(cloud3.cloud)
+        skyView.addSubview(skyImageView)
         
-        treeView = UIView(frame: CGRect(x: 0, y: self.cloudView.frame.maxY, width: self.view.frame.maxX
-            , height: self.skyView.frame.maxY - self.cloudView.frame.maxY))
+        // Init trees
+        treeView = UIView(frame: CGRect(x: -80, y: 250, width: 300, height: 400))
+        treeView2 = UIView(frame: CGRect(x: 200, y: 250, width: 300, height: 400))
         
-        tree = Tree()
-        tree.stick.position.x += 70
-        tree.tree.position.x += 72
-        tree.stick.position.y += 280
-        tree.tree.position.y += 280
+        treeImage = UIImage(named: "tree")
+        treeImageView = UIImageView(image: treeImage)
+        treeImageView.frame = CGRect(x: 0, y: 0, width: 300, height: 400)
+        treeImageView2 = UIImageView(image: treeImage)
+        treeImageView2.frame = CGRect(x: 0, y: 0, width: 300, height: 400)
         
-        tree2 = Tree()
-        tree2.stick.position.x += 250
-        tree2.tree.position.x += 252
-        tree2.stick.position.y += 280
-        tree2.tree.position.y += 280
+        treeView.addSubview(treeImageView)
+        treeView2.addSubview(treeImageView2)
         
-        treeView.layer.addSublayer(tree.stick)
-        treeView.layer.addSublayer(tree.tree)
-        treeView.layer.addSublayer(tree2.stick)
-        treeView.layer.addSublayer(tree2.tree)
-
+        // Init clouds
+        cloudView = UIView(frame: CGRect(x: 0, y: 50, width: 200, height: 100))
+        cloudView2 = UIView(frame: CGRect(x: 250, y: 70, width: 200, height: 100))
+        
+        cloudImage = UIImage(named: "cloud")
+        cloudImageView = UIImageView(image: cloudImage)
+        cloudImageView.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        
+        cloudImageView2 = UIImageView(image: cloudImage)
+        cloudImageView2.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        
+        cloudView.addSubview(cloudImageView)
+        cloudView2.addSubview(cloudImageView2)
 
         
         // Init faceView
         faceView = UIView(frame: CGRect(x: self.view.frame.maxX / 3, y: (skyView.frame.maxY / 2) + 60, width: 100, height: 100))
-        boyFace = Face()
-        boyFace.head.position.x += 50
-        boyFace.head.position.y += 20
-        boyFace.lEye.position.y += 20
-        boyFace.rEye.position.y += 20
-        boyFace.mouth.position.y += 50
         
-        // Init controls view
-        arrowView = UIView(frame: CGRect(x: landView.frame.minX + 5, y: landView.frame.minY + 5, width: landView.frame.maxX - 10, height: landView.frame.maxY - 10))
+        cookieFace = UIImage(named: "cookman_r_open")
+        cookieFaceView = UIImageView(image: cookieFace)
+        cookieFaceView.frame = CGRect(x: 0, y: 0, width: 100
+            , height: 100)
+        faceView.addSubview(cookieFaceView)
+        
+        
+        // Init controls
+        controlView = UIView(frame: CGRect(x: landView.frame.minX + 5, y: landView.frame.minY + 5, width: landView.frame.maxX - 10, height: landView.frame.maxY - 10))
         leftArrow = Arrow(isReversed: true)
         rightArrow = Arrow(isReversed: false)
         
         leftButton = UIButton(type: .system)
         leftButton.frame = CGRect(x:  20, y: 80, width: 100, height: 100)
+        leftButton.accessibilityIdentifier = "left"
+        leftButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
         leftArrow.arrowHead.position.x += 40
         leftArrow.stick.position.x += 40
         leftButton.layer.addSublayer(leftArrow.arrowHead)
         leftButton.layer.addSublayer(leftArrow.stick)
-        leftButton.accessibilityIdentifier = "left"
-        leftButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
+        
         
         rightButton = UIButton(type: .system)
         rightButton.frame = CGRect(x: 120, y: 80, width: 100, height: 100)
+        rightButton.accessibilityIdentifier = "right"
+        rightButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
         rightArrow.arrowHead.position.x += 20
         rightArrow.stick.position.x += 20
         rightButton.layer.addSublayer(rightArrow.arrowHead)
         rightButton.layer.addSublayer(rightArrow.stick)
-        rightButton.accessibilityIdentifier = "right"
-        rightButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
         
         actionButton = UIButton(type: .system)
         actionButton.backgroundColor = .black
@@ -332,43 +345,37 @@ class MainViewViewController: UIViewController {
         actionButton.accessibilityIdentifier = "action"
         actionButton.addTarget(self, action: #selector(pressControl(sender:)), for: .touchDown)
         
-        arrowView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        controlView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
-        chest = Chest()
-        chest.chest.position.x += 10
-        chest.chest.position.y += 65
-        chest.chestLid.position.x += 10
-        chest.chestLid.position.y += 65
-        chest.chestLock.position.x += 10
-        chest.chestLock.position.y += 65
         
-        chestView = UIView(frame: CGRect(x: skyView.frame.maxX - 100, y: skyView.frame.maxY - 400, width: 100, height: 100))
-        chestView.layer.addSublayer(chest.chestLid)
+        // Init chestView
+        chestView = UIView(frame: CGRect(x: skyView.frame.maxX - 100, y: skyView.frame.maxY - 380, width: 100, height: 100))
+        chestImage = UIImage(named: "chest_closed")
+        chestImageView = UIImageView(image: chestImage)
+        chestImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         
-        chestView.layer.addSublayer(chest.chest)
-        chestView.layer.addSublayer(chest.chestLock)
+        chestView.addSubview(chestImageView)
+        
+        
     }
     
     func addViews() {
         // add views to main viewcontroller
         self.view.addSubview(skyView)
-        self.view.addSubview(cloudView)
-        self.view.addSubview(treeView)
         self.view.addSubview(landView)
+        self.view.addSubview(treeView)
+        self.view.addSubview(treeView2)
+        self.view.addSubview(cloudView)
+        self.view.addSubview(cloudView2)
         self.view.addSubview(faceView)
         self.view.addSubview(resultView)
-        self.view.addSubview(arrowView)
+        self.view.addSubview(controlView)
         self.view.addSubview(chestView)
         self.view.addSubview(lockView)
-        
-        faceView.layer.addSublayer(boyFace.head)
-        faceView.layer.addSublayer(boyFace.lEye)
-        faceView.layer.addSublayer(boyFace.rEye)
-        faceView.layer.addSublayer(boyFace.mouth)
-        
-        arrowView.addSubview(leftButton)
-        arrowView.addSubview(rightButton)
-        arrowView.addSubview(actionButton)
+
+        controlView.addSubview(leftButton)
+        controlView.addSubview(rightButton)
+        controlView.addSubview(actionButton)
         
         resultView.addSubview(yayLabel)
     }

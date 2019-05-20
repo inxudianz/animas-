@@ -12,15 +12,11 @@
 		9207BA7B228A45EF00E9051A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9207BA7A228A45EF00E9051A /* Assets.xcassets */; };
 		9207BA7E228A45EF00E9051A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9207BA7C228A45EF00E9051A /* LaunchScreen.storyboard */; };
 		9207BA8B228A4BF500E9051A /* MainViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9207BA8A228A4BF500E9051A /* MainViewViewController.swift */; };
-		92487047228A6EE30042DAFE /* Face.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487046228A6EE30042DAFE /* Face.swift */; };
-		92487087228CE5230042DAFE /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487086228CE5230042DAFE /* Arrow.swift */; };
-		92487089228DBB040042DAFE /* Chest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92487088228DBB040042DAFE /* Chest.swift */; };
 		924870AF2291A6C60042DAFE /* blastFX.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870AE2291A6C60042DAFE /* blastFX.wav */; };
 		924870B12291A6E50042DAFE /* mainTheme.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870B02291A6E50042DAFE /* mainTheme.wav */; };
-		924870B32291A8600042DAFE /* drumSample.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870B22291A8600042DAFE /* drumSample.wav */; };
-		924870B52291AD510042DAFE /* firework.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870B42291AD510042DAFE /* firework.wav */; };
-		924870B72291B0150042DAFE /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870B62291B0150042DAFE /* Cloud.swift */; };
-		924870B92291B81E0042DAFE /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870B82291B81E0042DAFE /* Tree.swift */; };
+		924870BE2292E84C0042DAFE /* drumSample.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870BC2292E84C0042DAFE /* drumSample.wav */; };
+		924870C12292F8ED0042DAFE /* yay.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870C02292F8EC0042DAFE /* yay.wav */; };
+		924870C422930D8D0042DAFE /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870C322930D8D0042DAFE /* Arrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,15 +27,11 @@
 		9207BA7D228A45EF00E9051A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9207BA7F228A45EF00E9051A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9207BA8A228A4BF500E9051A /* MainViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewViewController.swift; path = "animasé/View/MainViewViewController.swift"; sourceTree = SOURCE_ROOT; };
-		92487046228A6EE30042DAFE /* Face.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Face.swift; sourceTree = "<group>"; };
-		92487086228CE5230042DAFE /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
-		92487088228DBB040042DAFE /* Chest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chest.swift; sourceTree = "<group>"; };
 		924870AE2291A6C60042DAFE /* blastFX.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blastFX.wav; sourceTree = "<group>"; };
 		924870B02291A6E50042DAFE /* mainTheme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mainTheme.wav; sourceTree = "<group>"; };
-		924870B22291A8600042DAFE /* drumSample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drumSample.wav; sourceTree = "<group>"; };
-		924870B42291AD510042DAFE /* firework.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = firework.wav; sourceTree = "<group>"; };
-		924870B62291B0150042DAFE /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
-		924870B82291B81E0042DAFE /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		924870BC2292E84C0042DAFE /* drumSample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = drumSample.wav; path = "../../../../../../../Dropbox (DeveloperAcademy-ID)/NC1 Stuff/Animase/Sound/drumSample.wav"; sourceTree = "<group>"; };
+		924870C02292F8EC0042DAFE /* yay.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yay.wav; sourceTree = "<group>"; };
+		924870C322930D8D0042DAFE /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +64,8 @@
 		9207BA6F228A45ED00E9051A /* animasé */ = {
 			isa = PBXGroup;
 			children = (
+				924870C222930D3E0042DAFE /* Model */,
 				9207BA86228A461400E9051A /* View */,
-				9207BA85228A45FE00E9051A /* Model */,
 				9207BA70228A45ED00E9051A /* AppDelegate.swift */,
 				9207BA7A228A45EF00E9051A /* Assets.xcassets */,
 				924870AB229082190042DAFE /* Audio */,
@@ -82,18 +74,6 @@
 				9207BA77228A45ED00E9051A /* animase_.xcdatamodeld */,
 			);
 			path = "animasé";
-			sourceTree = "<group>";
-		};
-		9207BA85228A45FE00E9051A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				92487046228A6EE30042DAFE /* Face.swift */,
-				92487086228CE5230042DAFE /* Arrow.swift */,
-				92487088228DBB040042DAFE /* Chest.swift */,
-				924870B62291B0150042DAFE /* Cloud.swift */,
-				924870B82291B81E0042DAFE /* Tree.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		9207BA86228A461400E9051A /* View */ = {
@@ -107,12 +87,20 @@
 		924870AB229082190042DAFE /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				924870B42291AD510042DAFE /* firework.wav */,
-				924870B22291A8600042DAFE /* drumSample.wav */,
+				924870BC2292E84C0042DAFE /* drumSample.wav */,
+				924870C02292F8EC0042DAFE /* yay.wav */,
 				924870B02291A6E50042DAFE /* mainTheme.wav */,
 				924870AE2291A6C60042DAFE /* blastFX.wav */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		924870C222930D3E0042DAFE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				924870C322930D8D0042DAFE /* Arrow.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,12 +161,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924870C12292F8ED0042DAFE /* yay.wav in Resources */,
 				924870B12291A6E50042DAFE /* mainTheme.wav in Resources */,
 				9207BA7E228A45EF00E9051A /* LaunchScreen.storyboard in Resources */,
 				9207BA7B228A45EF00E9051A /* Assets.xcassets in Resources */,
 				924870AF2291A6C60042DAFE /* blastFX.wav in Resources */,
-				924870B32291A8600042DAFE /* drumSample.wav in Resources */,
-				924870B52291AD510042DAFE /* firework.wav in Resources */,
+				924870BE2292E84C0042DAFE /* drumSample.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,12 +178,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9207BA79228A45ED00E9051A /* animase_.xcdatamodeld in Sources */,
+				924870C422930D8D0042DAFE /* Arrow.swift in Sources */,
 				9207BA8B228A4BF500E9051A /* MainViewViewController.swift in Sources */,
-				92487047228A6EE30042DAFE /* Face.swift in Sources */,
-				92487089228DBB040042DAFE /* Chest.swift in Sources */,
-				924870B72291B0150042DAFE /* Cloud.swift in Sources */,
-				924870B92291B81E0042DAFE /* Tree.swift in Sources */,
-				92487087228CE5230042DAFE /* Arrow.swift in Sources */,
 				9207BA71228A45ED00E9051A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
