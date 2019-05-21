@@ -21,7 +21,9 @@ class Arrow {
             addPointReversed()
         }
         stick.path = stickPath.cgPath
+        stick.fillColor = UIColor.red.cgColor
         arrowHead.path = arrowHeadPath.cgPath
+        arrowHead.fillColor = UIColor.red.cgColor
         
     }
     

@@ -17,6 +17,14 @@
 		924870BE2292E84C0042DAFE /* drumSample.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870BC2292E84C0042DAFE /* drumSample.wav */; };
 		924870C12292F8ED0042DAFE /* yay.wav in Resources */ = {isa = PBXBuildFile; fileRef = 924870C02292F8EC0042DAFE /* yay.wav */; };
 		924870C422930D8D0042DAFE /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870C322930D8D0042DAFE /* Arrow.swift */; };
+		924870C722930FC50042DAFE /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870C622930FC50042DAFE /* LockView.swift */; };
+		924870CA229311EF0042DAFE /* SoundAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870C9229311EF0042DAFE /* SoundAudio.swift */; };
+		924870CC229317C40042DAFE /* SceneryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870CB229317C40042DAFE /* SceneryView.swift */; };
+		924870CE2293189D0042DAFE /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870CD2293189D0042DAFE /* FaceView.swift */; };
+		924870D0229318BA0042DAFE /* ChestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870CF229318BA0042DAFE /* ChestView.swift */; };
+		924870D2229318C30042DAFE /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870D1229318C30042DAFE /* ControlView.swift */; };
+		924870D422937D840042DAFE /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870D322937D840042DAFE /* ResultView.swift */; };
+		924870D7229384DE0042DAFE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924870D6229384DE0042DAFE /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +40,14 @@
 		924870BC2292E84C0042DAFE /* drumSample.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = drumSample.wav; path = "../../../../../../../Dropbox (DeveloperAcademy-ID)/NC1 Stuff/Animase/Sound/drumSample.wav"; sourceTree = "<group>"; };
 		924870C02292F8EC0042DAFE /* yay.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yay.wav; sourceTree = "<group>"; };
 		924870C322930D8D0042DAFE /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		924870C622930FC50042DAFE /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		924870C9229311EF0042DAFE /* SoundAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAudio.swift; sourceTree = "<group>"; };
+		924870CB229317C40042DAFE /* SceneryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneryView.swift; sourceTree = "<group>"; };
+		924870CD2293189D0042DAFE /* FaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
+		924870CF229318BA0042DAFE /* ChestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChestView.swift; sourceTree = "<group>"; };
+		924870D1229318C30042DAFE /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		924870D322937D840042DAFE /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		924870D6229384DE0042DAFE /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +80,9 @@
 		9207BA6F228A45ED00E9051A /* animasé */ = {
 			isa = PBXGroup;
 			children = (
+				924870D5229384B40042DAFE /* Data */,
+				924870C8229311D80042DAFE /* Helper */,
+				924870C522930F500042DAFE /* UIView */,
 				924870C222930D3E0042DAFE /* Model */,
 				9207BA86228A461400E9051A /* View */,
 				9207BA70228A45ED00E9051A /* AppDelegate.swift */,
@@ -101,6 +120,35 @@
 				924870C322930D8D0042DAFE /* Arrow.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		924870C522930F500042DAFE /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				924870C622930FC50042DAFE /* LockView.swift */,
+				924870CB229317C40042DAFE /* SceneryView.swift */,
+				924870CD2293189D0042DAFE /* FaceView.swift */,
+				924870CF229318BA0042DAFE /* ChestView.swift */,
+				924870D1229318C30042DAFE /* ControlView.swift */,
+				924870D322937D840042DAFE /* ResultView.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		924870C8229311D80042DAFE /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				924870C9229311EF0042DAFE /* SoundAudio.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		924870D5229384B40042DAFE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				924870D6229384DE0042DAFE /* Session.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,8 +227,16 @@
 			files = (
 				9207BA79228A45ED00E9051A /* animase_.xcdatamodeld in Sources */,
 				924870C422930D8D0042DAFE /* Arrow.swift in Sources */,
+				924870D422937D840042DAFE /* ResultView.swift in Sources */,
 				9207BA8B228A4BF500E9051A /* MainViewViewController.swift in Sources */,
+				924870CE2293189D0042DAFE /* FaceView.swift in Sources */,
+				924870D2229318C30042DAFE /* ControlView.swift in Sources */,
+				924870C722930FC50042DAFE /* LockView.swift in Sources */,
+				924870CA229311EF0042DAFE /* SoundAudio.swift in Sources */,
+				924870D7229384DE0042DAFE /* Session.swift in Sources */,
+				924870D0229318BA0042DAFE /* ChestView.swift in Sources */,
 				9207BA71228A45ED00E9051A /* AppDelegate.swift in Sources */,
+				924870CC229317C40042DAFE /* SceneryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
