@@ -15,8 +15,6 @@ class LockView{
     var rightLockView :UIView!
     var startButton :UIButton!
     
-    var soundAudio :SoundAudio!
-    
     init(main :UIViewController) {
         
         initViews(main :main)
@@ -33,7 +31,6 @@ class LockView{
     
     fileprivate func initViews(main :UIViewController) {
         // Init views
-        soundAudio = SoundAudio()
         lockView = UIView(frame: CGRect(x: 0, y: 0, width: main.view.frame.maxX, height: main.view.frame.maxY))
         
         lockView.backgroundColor = UIColor(red: 255/255, green: 192/255, blue: 64/255, alpha: 1)

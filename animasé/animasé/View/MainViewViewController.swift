@@ -10,26 +10,20 @@ import UIKit
 import AVFoundation
 
 class MainViewViewController: UIViewController {
-    
-    var soundAudio :SoundAudio!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initViews()
-        
         addViews()
-        
     }
     
     func initViews() {
+        soundAudio = SoundAudio()
         masterLockView = LockView(main: self)
         masterSceneryView = SceneryView(main: self)
         masterFaceView = FaceView(main: self)
         masterChestView = ChestView(main: self)
         masterControlView = ControlView(main: self)
         masterResultView = ResultView(main: self)
-        
     }
     
     func addViews() {

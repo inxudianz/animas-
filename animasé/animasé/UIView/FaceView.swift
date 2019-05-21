@@ -34,6 +34,9 @@ class FaceView {
             }
             cookieFaceView.image = UIImage(named: "cookman_l_open")
         }
+        else {
+            successRate = 100
+        }
     }
     
     func moveRight(main :UIViewController) {

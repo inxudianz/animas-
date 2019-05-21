@@ -16,4 +16,4 @@ var masterControlView :ControlView!
 var masterResultView :ResultView!
 
 var soundAudio :SoundAudio!
-var successRate = 100
+var successRate = 0

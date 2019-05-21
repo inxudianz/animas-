@@ -13,7 +13,6 @@ class ResultView {
     var resultView :UIView!
     var yayLabel :UILabel!
     
-    var soundAudio :SoundAudio!
     
     init(main :UIViewController) {
         createView(main :main)
@@ -21,7 +20,6 @@ class ResultView {
     }
     
     fileprivate func createView(main :UIViewController) {
-        soundAudio = SoundAudio()
         yayLabel = UILabel()
         resultView = UIView(frame: CGRect(x: 0, y: 0, width: main.view.frame.maxX, height: main.view.frame.maxY))
         resultView.backgroundColor = .white

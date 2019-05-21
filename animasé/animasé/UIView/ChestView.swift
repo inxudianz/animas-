@@ -15,8 +15,6 @@ class ChestView {
     var chestImageView :UIImageView!
     var isChestCenter :Bool = false
     
-    var soundAudio :SoundAudio!
-    
     init(main :UIViewController) {
         createChest(main :main)
         chestView.addSubview(chestImageView)
@@ -24,7 +22,6 @@ class ChestView {
     
     fileprivate func createChest(main :UIViewController) {
         // Init chestView
-        soundAudio = SoundAudio()
         chestView = UIView(frame: CGRect(x: masterSceneryView.skyView.frame.maxX - 100, y: masterSceneryView.skyView.frame.maxY - 380, width: 100, height: 100))
         chestImage = UIImage(named: "chest_closed")
         chestImageView = UIImageView(image: chestImage)
@@ -51,7 +48,7 @@ class ChestView {
                 masterControlView.actionButton.isEnabled = true
                 self.chestView.layer.removeAllAnimations()
                 self.chestView.transform = CGAffineTransform(rotationAngle: 0)
-                self.soundAudio.audioPlayer?.stop()
+                soundAudio.audioPlayer?.stop()
                 masterResultView.resultView.layer.backgroundColor = UIColor.white.cgColor
                 masterResultView.resultView.layer.opacity = 0.3
             }
@@ -84,13 +81,13 @@ class ChestView {
                         }
                     }
                 }
-                self.soundAudio.audioPlayer?.stop()
+                soundAudio.audioPlayer?.stop()
                 self.chestImageView.image = UIImage(named: "chest_open")
                 masterResultView.yayLabel.text = "YAY"
                 masterResultView.yayLabel.font = masterResultView.yayLabel.font.withSize(60)
                 masterResultView.yayLabel.textColor = .white
                 masterResultView.yayLabel.frame = CGRect(x: main.view.frame.maxX/2 - 50, y: main.view.frame.maxY/2 - 100, width: 200, height: 100)
-                self.soundAudio.addSoundFX(audio: "yay", isRepeat: false)
+                soundAudio.addSoundFX(audio: "yay", isRepeat: false)
             }
         }
     }

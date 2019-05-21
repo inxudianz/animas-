@@ -77,9 +77,17 @@ class ControlView {
     
     @objc func pressControl(sender: UIButton!) {
         if sender.accessibilityIdentifier == "left" {
+            sender.layer.opacity = 0.7
+            UIView.animate(withDuration: 0.2) {
+                sender.layer.opacity = 1
+            }
             masterFaceView.moveLeft(main: main)
         }
         else if sender.accessibilityIdentifier == "right" {
+            sender.layer.opacity = 0.7
+            UIView.animate(withDuration: 0.2) {
+                sender.layer.opacity = 1
+            }
             masterFaceView.moveRight(main: main)
         }
         else if sender.accessibilityIdentifier == "action" {
